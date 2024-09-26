@@ -46,7 +46,7 @@ router.post("/", upload.single("pic"), async (req, res) => {
     try {
         const verifiedToken = jwt.verify(token,process.env.SECRET_KEY);
         const user = await usermodel.findById(verifiedToken.userid);
-
+        console.log(user);
         if (!user) {
             return res.status(400).send("User not found.");
         }
