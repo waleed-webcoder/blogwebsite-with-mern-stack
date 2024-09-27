@@ -36,10 +36,8 @@ router.post("/", async (req, res) => {
         res.json({
             message: "Login successful",
             data: {
-                email: findedUser.email,
                 name: findedUser.name,
                 number: findedUser.number,
-                imageurl: findedUser.imageurl,
                 gender: findedUser.gender,
             }
         });
