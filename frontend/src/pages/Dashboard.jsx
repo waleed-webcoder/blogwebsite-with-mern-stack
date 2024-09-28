@@ -25,6 +25,7 @@ const Dashboard = () => {
       alert("the post is created")
     }catch(error){
       console.log("error in creating post",error);
+      alert("You must be logged in")
     }
 
   }

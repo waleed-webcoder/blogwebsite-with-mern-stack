@@ -13,7 +13,7 @@ const LoginPage = () => {
     }, {
       withCredentials:true,
         headers: {
-            "Content-Type": "application/json", // Use JSON content type
+           "Content-Type": "application/json",
         }
     });
     console.log("The login form data is submitted", response.data);
@@ -21,6 +21,7 @@ const LoginPage = () => {
       
     }catch(error){
       console.log("error in submitting loginform submitting",error)
+      alert("error in submitting form")
     }
   }
   return (
