@@ -19,9 +19,7 @@ router.post("/", async (req, res) => {
                         email: findedUser.email,
                         userid: findedUser._id,
                     },
-                    process.env.SECRET_KEY,
-                    { expiresIn: '1h' } // Token expiration added for security
-                );
+                    process.env.SECRET_KEY,);
         
                 res.cookie('token', token, {
                     httpOnly: true,  // Prevent access to the cookie from JavaScript (for security)
