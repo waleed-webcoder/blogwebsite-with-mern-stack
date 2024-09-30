@@ -52,7 +52,7 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gray-100">
       {/* Dashboard Header */}
       <header className="bg-blue-600 text-white py-4 px-6">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
+      <h1 className="text-3xl text-center font-bold">Welcome ,{userData?.name} ON DASHBOARD</h1>
       </header>
 
       {/* Main Dashboard Content */}
@@ -82,21 +82,14 @@ const Dashboard = () => {
 
         {/* Dashboard Main Section */}
         <main className="flex-1 bg-white p-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6">
             {/* Cards for Analytics */}
-            <div className="bg-blue-500 text-white p-6 rounded-lg shadow-lg">
+            <div className="bg-blue-500 text-white p-6 rounded-lg text-center shadow-lg">
               <h3 className="text-2xl font-bold">Total Posts</h3>
               <p className="mt-2 text-lg">{userData?.posts?.length || 0}</p>
 
             </div>
-            <div className="bg-green-500 text-white p-6 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold">New Users</h3>
-              <p className="mt-2 text-lg">123</p>
-            </div>
-            <div className="bg-yellow-500 text-white p-6 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold">Comments</h3>
-              <p className="mt-2 text-lg">320</p>
-            </div>
+            
           </div>
 
           {/* Create Post Section */}
