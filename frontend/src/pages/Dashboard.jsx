@@ -1,10 +1,26 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios from "axios"
 const Dashboard = () => {
+  const [userData,setUserData]=useState(null);
   const [title,settitle]=useState("");
   const [description,setdesccription]=useState("")
   const [pic,setpic]=useState(null);
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/userprofile", {
+          withCredentials: true, // Ensure cookies are sent
+        });
+        setUserData(response.data.data); // Adjusted to use `response.data.data` based on your backend structure
+        
+      } catch (err) {
+        console.log(err.message)
+      }
+    };
+    fetchUserData();
+  }, []);
+
   const handlefilechange=(e)=>{
     setpic(e.target.files[0])
   }
@@ -70,7 +86,8 @@ const Dashboard = () => {
             {/* Cards for Analytics */}
             <div className="bg-blue-500 text-white p-6 rounded-lg shadow-lg">
               <h3 className="text-2xl font-bold">Total Posts</h3>
-              <p className="mt-2 text-lg">45</p>
+              <p className="mt-2 text-lg">{userData?.posts?.length || 0}</p>
+
             </div>
             <div className="bg-green-500 text-white p-6 rounded-lg shadow-lg">
               <h3 className="text-2xl font-bold">New Users</h3>
