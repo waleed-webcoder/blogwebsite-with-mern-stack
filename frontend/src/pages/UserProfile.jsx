@@ -140,9 +140,6 @@ const UserProfile = () => {
                     {post.description ? post.description.slice(0, 100) : "No description available"}...
                   </p>
                   <p className="text-sm text-gray-500 mt-2">{post.date || "Date not available"}</p>
-                  <button className="mt-4 text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-700">
-                    Read More
-                  </button>
                 </div>
               ))
             ) : (
