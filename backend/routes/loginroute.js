@@ -28,6 +28,7 @@ router.post("/", async (req, res) => {
                 });
                 res.json({
                     message: "Login successful",
+                    token:token,
                     data: {
                         name: findedUser.name,
                         number: findedUser.number,

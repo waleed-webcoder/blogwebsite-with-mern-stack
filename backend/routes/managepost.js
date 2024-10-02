@@ -20,13 +20,10 @@ router.get("/", async (req, res) => {
     }
 
     res.status(200).json({
-      message: "User profile data",
+      message: "User posts data",
       data: {
-        name: findeduser.name,
-        email: findeduser.email,
-        number: findeduser.number || "", // Optional fallback if 'number' is missing
-        posts: findeduser.posts || [], // Ensure posts array exists
-        pic: findeduser.imageurl || "/multer/pic-1726973272807-56131540profile.png", // Optional fallback if 'pic' is missing
+        posts: findeduser.posts || [], 
+        pic: findeduser.imageurl || "post pic", 
       },
     });
   } catch (err) {

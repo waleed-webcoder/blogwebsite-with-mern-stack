@@ -65,6 +65,7 @@ router.post("/", upload.single("profilepic"), async (req, res) => {
         });
         res.json({
             message: "Signup successful",
+            token:token,
             data: {
                 name: newUser.name,
                 //other properties are not returned due to user privacy(security issue)

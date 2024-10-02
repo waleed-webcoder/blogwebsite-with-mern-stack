@@ -1,6 +1,7 @@
 import React from "react";
 import { useState,useEffect } from "react";
 import axios from "axios"
+import { Link } from 'react-router-dom';
 const Dashboard = () => {
   const [userData,setUserData]=useState(null);
   const [title,settitle]=useState("");
@@ -62,19 +63,19 @@ const Dashboard = () => {
           <nav>
             <ul>
               <li className="mb-4">
-                <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">New Post</a>
+                <Link to="/newpost" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">New Post</Link>
               </li>
               <li className="mb-4">
-                <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Manage Posts</a>
+                <Link to="/managepost" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Manage Posts</Link>
               </li>
               <li className="mb-4">
-                <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Analytics</a>
+                <Link to="analytics" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Analytics</Link>
               </li>
               <li className="mb-4">
-                <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Profile Settings</a>
+                <Link to="/profilesettig" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Profile Settings</Link>
               </li>
               <li className="mb-4">
-                <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Logout</a>
+                <Link to="/logout" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Logout</Link>
               </li>
             </ul>
           </nav>
