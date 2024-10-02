@@ -43,7 +43,7 @@ const ManagePosts = () => {
     <div className="container mx-auto p-5">
       {/* Search Bar */}
       <div className="mb-4 flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-800">Manage Posts</h1>
+        <h1 className="text-3xl font-bold text-gray-800">Manage Your Posts</h1>
         <input
           type="text"
           placeholder="Search posts..."
