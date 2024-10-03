@@ -59,7 +59,7 @@ router.post("/", upload.single("profilepic"), async (req, res) => {
         );
 
         res.cookie('token', token, {
-            httpOnly: true,  // Prevent access to the cookie from JavaScript (for security)
+              // Prevent access to the cookie from JavaScript (for security)
             secure: false,  // Set true if using HTTPS
             sameSite: 'lax'  // Control cross-site cookie behavior
         });

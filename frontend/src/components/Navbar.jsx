@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from "js-cookie";
 
-const Navbar = () => {
-  // State to manage mobile menu visibility
+const Navbar = ({ loginState }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Function to toggle mobile menu
+  useEffect(() => {
+    const token = Cookies.get("token"); // Ensure token name is correct
+    if (token) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [loginState]); // Trigger useEffect when loginState changes
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -13,40 +22,49 @@ const Navbar = () => {
   return (
     <nav className="bg-gradient-to-r from-purple-500 to-indigo-600 p-4 shadow-lg">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
         <h1 className="text-white text-3xl font-extrabold tracking-widest flex items-center space-x-2">
-          <i className="fas fa-th-large"></i> {/* FontAwesome icon */}
+          <i className="fas fa-th-large"></i>
           <span>Blogify</span>
         </h1>
 
-        {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center space-x-6">
           <Link to="/" className="text-white text-lg font-medium hover:text-indigo-200 transition duration-300">
-            <i className="fas fa-home mr-2"></i> {/* FontAwesome icon */}
-            Home
+            <i className="fas fa-home mr-2"></i> Home
           </Link>
-          <Link to="/dashboard" className="text-white text-lg font-medium hover:text-indigo-200 transition duration-300">
-            <i className="fas fa-th-large mr-2"></i> {/* FontAwesome icon */}
-            Dashboard
-          </Link>
-          <Link to="/profile" className="text-white text-lg font-medium hover:text-indigo-200 transition duration-300">
-            <i className="fas fa-user-circle mr-2"></i> {/* FontAwesome icon */}
-            Profile
-          </Link>
-          <Link to="/login" className="text-white text-lg font-medium hover:text-indigo-200 transition duration-300">
-            <i className="fas fa-sign-in-alt mr-2"></i> {/* FontAwesome icon */}
-            Login
-          </Link>
-          <Link
-            to="/signup"
-            className="bg-white text-indigo-600 px-5 py-2 rounded-full text-lg font-semibold shadow hover:bg-indigo-100 transition duration-300"
-          >
-            <i className="fas fa-sign-out-alt mr-2"></i> {/* FontAwesome icon */}
-            Sign Up
-          </Link>
+          {isAuthenticated ? (
+            <>
+              <Link to="/dashboard" className="text-white text-lg font-medium hover:text-indigo-200 transition duration-300">
+                <i className="fas fa-th-large mr-2"></i> Dashboard
+              </Link>
+              <Link to="/profile" className="text-white text-lg font-medium hover:text-indigo-200 transition duration-300">
+                <i className="fas fa-user-circle mr-2"></i> Profile
+              </Link>
+              <button 
+                onClick={() => {
+                  Cookies.remove("token"); // Remove the token on logout
+                  setIsAuthenticated(false); // Update the state
+                }} 
+                className="text-white text-lg font-medium hover:text-indigo-200 transition duration-300"
+              >
+                <i className="fas fa-sign-out-alt mr-2"></i> Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="text-white text-lg font-medium hover:text-indigo-200 transition duration-300">
+                <i className="fas fa-sign-in-alt mr-2"></i> Login
+              </Link>
+              <Link
+                to="/signup"
+                className="bg-white text-indigo-600 px-5 py-2 rounded-full text-lg font-semibold shadow hover:bg-indigo-100 transition duration-300"
+              >
+                <i className="fas fa-sign-out-alt mr-2"></i> Sign Up
+              </Link>
+            </>
+          )}
         </div>
 
-        {/* Mobile Menu (Hamburger Icon) */}
+        {/* Mobile Menu */}
         <div className="md:hidden">
           <button onClick={toggleMenu} className="text-white focus:outline-none">
             <svg
@@ -62,31 +80,41 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Links */}
       <div className={`md:hidden ${isOpen ? 'block' : 'hidden'} mt-4`}>
         <Link to="/" className="block text-white text-lg font-medium py-2 hover:text-indigo-200 transition duration-300">
-          <i className="fas fa-home mr-2"></i> {/* FontAwesome icon */}
-          Home
+          <i className="fas fa-home mr-2"></i> Home
         </Link>
-        <Link to="/dashboard" className="block text-white text-lg font-medium py-2 hover:text-indigo-200 transition duration-300">
-          <i className="fas fa-th-large mr-2"></i> {/* FontAwesome icon */}
-          Dashboard
-        </Link>
-        <Link to="/profile" className="block text-white text-lg font-medium py-2 hover:text-indigo-200 transition duration-300">
-          <i className="fas fa-user-circle mr-2"></i> {/* FontAwesome icon */}
-          Profile
-        </Link>
-        <Link to="/login" className="block text-white text-lg font-medium py-2 hover:text-indigo-200 transition duration-300">
-          <i className="fas fa-sign-in-alt mr-2"></i> {/* FontAwesome icon */}
-          Login
-        </Link>
-        <Link
-          to="/signup"
-          className="block bg-white text-indigo-600 px-5 py-2 rounded-full text-lg font-semibold shadow hover:bg-indigo-100 transition duration-300 mt-2"
-        >
-          <i className="fas fa-sign-out-alt mr-2"></i> {/* FontAwesome icon */}
-          Sign Up
-        </Link>
+        {isAuthenticated ? (
+          <>
+            <Link to="/dashboard" className="block text-white text-lg font-medium py-2 hover:text-indigo-200 transition duration-300">
+              <i className="fas fa-th-large mr-2"></i> Dashboard
+            </Link>
+            <Link to="/profile" className="block text-white text-lg font-medium py-2 hover:text-indigo-200 transition duration-300">
+              <i className="fas fa-user-circle mr-2"></i> Profile
+            </Link>
+            <button 
+              onClick={() => {
+                Cookies.remove("token");
+                setIsAuthenticated(false);
+              }} 
+              className="block text-white text-lg font-medium py-2 hover:text-indigo-200 transition duration-300"
+            >
+              <i className="fas fa-sign-out-alt mr-2"></i> Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="block text-white text-lg font-medium py-2 hover:text-indigo-200 transition duration-300">
+              <i className="fas fa-sign-in-alt mr-2"></i> Login
+            </Link>
+            <Link
+              to="/signup"
+              className="block bg-white text-indigo-600 px-5 py-2 rounded-full text-lg font-semibold shadow hover:bg-indigo-100 transition duration-300 mt-2"
+            >
+              <i className="fas fa-sign-out-alt mr-2"></i> Sign Up
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );
