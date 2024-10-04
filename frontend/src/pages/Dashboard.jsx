@@ -2,6 +2,7 @@ import React from "react";
 import { useState,useEffect } from "react";
 import axios from "axios"
 import { Link } from 'react-router-dom';
+import Cookies from "js-cookie";
 const Dashboard = () => {
   const [userData,setUserData]=useState(null);
   const [title,settitle]=useState("");
@@ -24,6 +25,10 @@ const Dashboard = () => {
 
   const handlefilechange=(e)=>{
     setpic(e.target.files[0])
+  }
+  const handlelogout=()=>{
+    Cookies.remove("token");
+    alert(" ! !user logout successfully ! !")
   }
   const handlesubmit= async (e)=>{
     e.preventDefault();
@@ -53,7 +58,7 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gray-100">
       {/* Dashboard Header */}
       <header className="bg-blue-600 text-white py-4 px-6">
-      <h1 className="text-3xl text-center font-bold">Welcome {userData?.name.toUpperCase()} ! ON Your DASHBOARD</h1>
+      <h1 className="text-3xl text-center font-bold">Welcome Back  {userData?.name.toUpperCase()} 👋 &nbsp;! ON Your DASHBOARD</h1>
       </header>
 
       {/* Main Dashboard Content */}
@@ -62,20 +67,16 @@ const Dashboard = () => {
         <aside className="w-full md:w-1/4 bg-white shadow-md p-4">
           <nav>
             <ul>
-              <li className="mb-4">
-                <Link to="/newpost" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">New Post</Link>
-              </li>
+              
               <li className="mb-4">
                 <Link to="/managepost" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Manage Posts</Link>
               </li>
+              
               <li className="mb-4">
-                <Link to="analytics" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Analytics</Link>
+                <Link to="/profile" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Profile Settings</Link>
               </li>
               <li className="mb-4">
-                <Link to="/profilesettig" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Profile Settings</Link>
-              </li>
-              <li className="mb-4">
-                <Link to="/logout" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Logout</Link>
+                <button onClick={()=>{handlelogout()}}  className="block py-2 px-4 text-gray-700 hover:bg-gray-200 rounded-lg">Logout</button>
               </li>
             </ul>
           </nav>
