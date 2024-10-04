@@ -18,6 +18,7 @@ const LoginPage = () => {
     });
     console.log("The login form data is submitted", response.data);
     alert("The form is submitted successfully");
+    
       
     }catch(error){
       console.log("error in submitting loginform submitting",error)

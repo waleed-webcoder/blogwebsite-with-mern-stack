@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const usermodel = require("../modules/user");
+const postmodel = require("../modules/post");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
@@ -31,5 +32,20 @@ router.get("/", async (req, res) => {
     return res.status(403).json({ message: "Invalid token" });
   }
 });
+router.delete("/:id",async (req,res)=>{
+  try{
+
+    const postid=req.params.id;
+    const deletepost=await postmodel.findByIdAndDelete(postid);
+    if (!deletepost) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+  
+    res.json({ message: "Post deleted successfully", deletedPost });
+  }catch(error){
+    console.error("Error deleting post:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+})
 
 module.exports = router;

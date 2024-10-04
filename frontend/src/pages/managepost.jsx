@@ -38,6 +38,19 @@ const ManagePosts = () => {
   const handleSearch = (event) => {
     setSearchQuery(event.target.value);
   };
+  const handledelete=async (postid)=>{
+    const confirmation=await window.confirm("Do you want to delete this post");
+    if(confirmation){
+      try{
+        axios.delete(`http://localhost:3000/managepost/${postid}`)
+        alert("post deleted successfully");
+      }catch(error){
+        console.log("error in deleting post",error)
+        alert("post could not be deleted")
+      }
+    }
+
+  }
 
   return (
     <div className="container mx-auto p-5">
@@ -73,7 +86,7 @@ const ManagePosts = () => {
               <button className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 rounded-lg mr-2">
                 Edit
               </button>
-              <button className="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded-lg">
+              <button onClick={()=>{handledelete(post._id)}} className="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded-lg">
                 Delete
               </button>
             </td>
