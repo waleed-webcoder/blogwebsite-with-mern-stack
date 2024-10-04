@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState,useEffect } from 'react';
+import { Link } from 'react-router-dom';
 const ManagePosts = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [postdata,setpostdata]=useState(null);
@@ -42,7 +43,7 @@ const ManagePosts = () => {
     const confirmation=await window.confirm("Do you want to delete this post");
     if(confirmation){
       try{
-        axios.delete(`http://localhost:3000/managepost/${postid}`)
+        axios.delete(`http://localhost:3000/managepost/deletepost/${postid}`)
         alert("post deleted successfully");
       }catch(error){
         console.log("error in deleting post",error)
@@ -83,9 +84,9 @@ const ManagePosts = () => {
             <td className="py-2 px-4">{post.title}</td> {/* Access post.title */}
             <td className="py-2 px-4">{post.date}</td>   {/* Access post.date */}
             <td className="py-2 px-4 text-center">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 rounded-lg mr-2">
+              <Link to={`/editpost/${post._id}`} className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 rounded-lg mr-2">
                 Edit
-              </button>
+              </Link>
               <button onClick={()=>{handledelete(post._id)}} className="bg-red-500 hover:bg-red-700 text-white px-3 py-1 rounded-lg">
                 Delete
               </button>

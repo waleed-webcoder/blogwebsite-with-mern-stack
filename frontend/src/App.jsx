@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage.jsx';
 import SignupPage from './pages/SignupPage.jsx';
 import UserProfile from './pages/UserProfile.jsx';
 import ManagePosts from './pages/managepost.jsx';
+import EditPost from './pages/editpost.jsx';
 function App() {
   return (
     <Router>
@@ -21,6 +22,7 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/profile" element={<UserProfile/>}></Route>
             <Route path="/managepost" element={<ManagePosts/>}></Route>
+            <Route path='/editpost/:id' element={<EditPost/>}></Route>
           </Routes>
         </main>
         <Footer />

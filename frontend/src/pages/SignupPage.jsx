@@ -28,7 +28,7 @@ const SignupPage = () => {
         }
       })
       console.log("the signup form is submitted",response.data)
-      alert("the form is submitted")
+      alert("! ! Sign Up Successfully ! !")
     }catch(error){
       console.log("error in submitting form",error)
     }

@@ -31,7 +31,7 @@ const upload = multer({
 });
 
 router.post("/", upload.single("pic"), async (req, res) => {
-    const { title, description } = req.body;
+    const { title,date, description } = req.body;
     const file = req.file;
 
     if (!file) {
@@ -53,6 +53,7 @@ router.post("/", upload.single("pic"), async (req, res) => {
 
         const newPost = await postmodel.create({
             title,
+            date,
             description,
             imageurl: file.path,
             user: user._id

@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
     return res.status(403).json({ message: "Invalid token" });
   }
 });
-router.delete("/:id",async (req,res)=>{
+router.delete("/deletepost/:id",async (req,res)=>{
   try{
 
     const postid=req.params.id;
@@ -47,5 +47,40 @@ router.delete("/:id",async (req,res)=>{
     res.status(500).json({ message: "Server error" });
   }
 })
+router.get("/editpost/:id",async (req,res)=>{
+  const id=req.params.id;
+  try{
+    const post= await postmodel.findById(id);
+    if(!post){
+      res.status(404).send("something went wrong");
+      console.log("post noe found");
+    }
+    res.status(200).json(post)
+    console.log(post)
+  }catch(error){
+    console.log("server issue")
+  }
+  
+})
+router.put('/:id', async (req, res) => {
+  const { title, date, description } = req.body;
+
+  try {
+    // Find post by ID and update its data
+    const updatedPost = await postmodel.findByIdAndUpdate(
+      req.params.id,
+      { title, date, description },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedPost) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    res.json({ message: 'Post updated successfully', updatedPost });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to update post', error });
+  }
+});
 
 module.exports = router;

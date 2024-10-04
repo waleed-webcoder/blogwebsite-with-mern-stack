@@ -17,7 +17,7 @@ const LoginPage = () => {
         }
     });
     console.log("The login form data is submitted", response.data);
-    alert("The form is submitted successfully");
+    alert("! ! login successfully ! !");
     
       
     }catch(error){
