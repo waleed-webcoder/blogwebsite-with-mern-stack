@@ -41,8 +41,11 @@ const Navbar = ({ loginState }) => {
               </Link>
               <button 
                 onClick={() => {
-                  Cookies.remove("token"); // Remove the token on logout
-                  setIsAuthenticated(false); // Update the state
+                  const confirm=window.confirm("do you want to logout?")
+                  if(confirm){
+                    Cookies.remove("token"); // Remove the token on logout
+                    setIsAuthenticated(false); // Update the state
+                  }
                 }} 
                 className="text-white text-lg font-medium hover:text-indigo-200 transition duration-300"
               >
