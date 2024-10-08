@@ -108,7 +108,7 @@ const ManagePosts = () => {
             </tbody>
           </table>
         ) : (
-          <p className="text-gray-600">No posts match your search.</p>
+          <p className="text-gray-600">No posts match your search.!</p>
         )}
       </div>
 
