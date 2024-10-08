@@ -116,7 +116,7 @@ const ManagePosts = () => {
       <div className="mt-8 p-5 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold mb-4">Admin Tips</h2>
         <p className="mb-4">
-          Stay updated with your post performance, edit them regularly, and keep your readers engaged with fresh content. You can search through the posts using the search bar for a seamless experience.
+          Stay updated with your post performanc and  edit them regularly, and keep your readers engaged with fresh content. You can search through the posts using the search bar for a seamless experience.
         </p>
         <img src="https://revenuearchitects.com/wp-content/uploads/2017/02/Blog_pic-300x170.png" alt="Manage your posts" className="rounded-lg shadow-lg mx-auto" />
       </div>
