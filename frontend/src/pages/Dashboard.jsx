@@ -44,7 +44,7 @@ const Dashboard = () => {
         }
       })
       console.log("post created succesfully",response.data)
-      alert("the post is created")
+      alert("your post is created")
     }catch(error){
       console.log("error in creating post",error);
       alert("You must be logged in")
