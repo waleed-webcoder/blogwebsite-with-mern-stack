@@ -73,9 +73,9 @@ const HomePage = () => {
       {/* Footer */}
       <footer className="bg-blue-600 text-white py-6">
         <div className="container mx-auto px-6 text-center">
-          <p>&copy; 2024 Blog Platform. All rights reserved.</p>
+          <p>&copy; 2024 Blog Platform. All rights reserved !</p>
           <div className="flex justify-center space-x-4 mt-4">
-            <a href="#" className="hover:underline">Privacy Policy</a>
+            <a href="#" className="hover:underline">OUR Privacy Policy</a>
             <a href="#" className="hover:underline">Terms of Service</a>
             <a href="#" className="hover:underline">Contact Us</a>
           </div>
