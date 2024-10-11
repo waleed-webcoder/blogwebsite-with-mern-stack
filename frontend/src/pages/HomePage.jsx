@@ -21,7 +21,7 @@ const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Blog Post */}
             <div className="bg-gray-100 rounded-lg p-6 shadow hover:shadow-md transition">
-              <h3 className="text-xl font-bold mb-2">How to Start a Blog</h3>
+              <h3 className="text-xl font-bold mb-2">How to Start a new Blog</h3>
               <p className="text-gray-600 mb-4">Learn the essentials of creating a successful blog...</p>
               <button className="text-blue-600 hover:underline">Read More</button>
             </div>
