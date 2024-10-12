@@ -9,6 +9,7 @@ import SignupPage from './pages/SignupPage.jsx';
 import UserProfile from './pages/UserProfile.jsx';
 import ManagePosts from './pages/managepost.jsx';
 import EditPost from './pages/editpost.jsx';
+import OtpVerification from './pages/otpverification.jsx';
 function App() {
   return (
     <Router>
@@ -23,6 +24,7 @@ function App() {
             <Route path="/profile" element={<UserProfile/>}></Route>
             <Route path="/managepost" element={<ManagePosts/>}></Route>
             <Route path='/editpost/:id' element={<EditPost/>}></Route>
+            <Route path='/otp-verification' element={<OtpVerification/>}></Route>
           </Routes>
         </main>
         <Footer />

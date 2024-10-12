@@ -30,7 +30,11 @@ const userschema=mongoose.Schema({
     posts:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"post"
-    }]
+    }],
+    isVerified:{
+        type:Boolean,
+        required:true,
+    }
 })
 const usermodel=mongoose.model("user",userschema)
 module.exports=usermodel

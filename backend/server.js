@@ -11,6 +11,7 @@ mongoose.connect(process.env.DB_URI).then(() => {
 });
 const managepost=require("./routes/managepost")
 const loginRoute = require("./routes/loginroute");
+const otpverification = require("./routes/otproute");
 const UserProfile = require("./routes/profile");
 const signupRoute = require("./routes/signuproute");
 const postCreationRoute = require("./routes/postcreation");
@@ -30,6 +31,7 @@ app.use("/signup", signupRoute);
 app.use("/postcreation", postCreationRoute);
 app.use("/userprofile", UserProfile);
 app.use("/managepost",managepost)
+app.use("/verify-otp",otpverification)
 app.listen(3000, () => {
     console.log("Server is running on port 3000.");
 });

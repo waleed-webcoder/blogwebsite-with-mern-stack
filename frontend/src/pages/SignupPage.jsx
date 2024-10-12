@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 const SignupPage = () => {
   const [name,setname]=useState("");
   const [number,setnumber]=useState("");
@@ -8,6 +9,7 @@ const SignupPage = () => {
   const [password,setpassword]=useState("");
   const [gender,setgender]=useState("");
   const [profilepic,setprofilepic]=useState(null);
+  const navigate = useNavigate(); 
   const handlefile=(e)=>{
     setprofilepic(e.target.files[0])
   }
@@ -29,6 +31,8 @@ const SignupPage = () => {
       })
       console.log("the signup form is submitted",response.data)
       alert("! ! Sign Up Successfully ! !")
+      navigate("/otp-verification", { state: { userId: response.data.userId } });
+      
     }catch(error){
       console.log("error in submitting form",error)
     }
