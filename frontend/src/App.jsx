@@ -10,8 +10,11 @@ import UserProfile from './pages/UserProfile.jsx';
 import ManagePosts from './pages/managepost.jsx';
 import EditPost from './pages/editpost.jsx';
 import OtpVerification from './pages/otpverification.jsx';
+import Feed from './pages/Feed.jsx';
+import { AuthProvider } from './pages/AuthContext.jsx';
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <div className="flex flex-col min-h-screen">
         <Navbar />
@@ -25,11 +28,13 @@ function App() {
             <Route path="/managepost" element={<ManagePosts/>}></Route>
             <Route path='/editpost/:id' element={<EditPost/>}></Route>
             <Route path='/otp-verification' element={<OtpVerification/>}></Route>
+            <Route path='/Feed' element={<Feed/>}></Route>
           </Routes>
         </main>
         <Footer />
       </div>
     </Router>
+    </AuthProvider>
   );
 }
 
