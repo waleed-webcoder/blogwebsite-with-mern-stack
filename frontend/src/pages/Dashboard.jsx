@@ -2,9 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import Cookies from "js-cookie";
-
+import { useAuth } from '../pages/AuthContext';
+import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
+  const navigate=useNavigate();
+  const {logout}=useAuth();
+
   const [userData, setUserData] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -29,8 +32,11 @@ const Dashboard = () => {
   };
 
   const handleLogout = () => {
-    Cookies.remove("token");
-    alert("User logged out successfully!");
+    const confirm=window.confirm("do you want to logout ?");
+    if(confirm){
+      logout();
+      navigate("/login")
+    }
   };
 
   const handleSubmit = async (e) => {

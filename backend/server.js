@@ -15,6 +15,7 @@ const otpverification = require("./routes/otproute");
 const UserProfile = require("./routes/profile");
 const signupRoute = require("./routes/signuproute");
 const postCreationRoute = require("./routes/postcreation");
+const allposts = require("./routes/feedroute");
 const multer = require("multer");
 const app = express();
 app.use(bodyParser.json());
@@ -32,6 +33,7 @@ app.use("/postcreation", postCreationRoute);
 app.use("/userprofile", UserProfile);
 app.use("/managepost",managepost)
 app.use("/verify-otp",otpverification)
+app.use("/feed",allposts)
 app.listen(3000, () => {
     console.log("Server is running on port 3000.");
 });

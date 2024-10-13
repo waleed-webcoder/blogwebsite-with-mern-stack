@@ -1,6 +1,6 @@
 import React from "react";
 import { FaArrowRight, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
-
+import { Link } from 'react-router-dom';
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -13,9 +13,9 @@ const HomePage = () => {
           <p className="text-lg md:text-xl mt-6 max-w-2xl mx-auto">
             Dive into the latest posts, tutorials, and insights across tech, lifestyle, and business!
           </p>
-          <button className="mt-8 bg-white text-blue-600 hover:text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition inline-flex items-center">
+          <Link to="/Feed" className="mt-8 bg-white text-blue-600 hover:text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition inline-flex items-center">
             Start Reading <FaArrowRight className="ml-2" />
-          </button>
+          </Link>
         </div>
         <img
           src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHBlb3BsZXxlbnwwfHx8fDE2NDY0NTUxMTU&ixlib=rb-1.2.1&q=80&w=400"

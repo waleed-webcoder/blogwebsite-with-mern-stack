@@ -1,46 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const AllPosts = () => {
-  // Sample data for demonstration
-  const allPosts = [
-    {
-      id: 1,
-      title: "Tech Innovations of 2024",
-      author: "John Doe",
-      category: "Technology",
-      image: "https://source.unsplash.com/featured/technology",
-      date: "2024-10-10",
-      excerpt:
-        "Explore the latest innovations in the world of technology that are shaping the future.",
-    },
-    {
-      id: 2,
-      title: "10 Tips for a Healthier Lifestyle",
-      author: "Jane Smith",
-      category: "Lifestyle",
-      image: "https://source.unsplash.com/featured/health",
-      date: "2024-09-28",
-      excerpt: "Discover practical tips to improve your lifestyle and wellbeing.",
-    },
-    {
-      id: 3,
-      title: "The Future of Business Automation",
-      author: "Michael Roe",
-      category: "Business",
-      image: "https://source.unsplash.com/featured/business",
-      date: "2024-10-01",
-      excerpt:
-        "Automation is transforming businesses. Learn how it’s driving the next wave of innovation.",
-    },
-    // Add more posts as needed
-  ];
+  const [postdata, setpostdata] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(""); // Search query state
+  const [selectedCategory, setSelectedCategory] = useState("All"); // Category filter state
 
-  // State for search, filtering
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/feed", {
+          withCredentials: true,
+        });
+        setpostdata(response.data.postdata || []); // Ensure empty array if no posts
+      } catch (error) {
+        console.error("Error in fetching posts:", error);
+        alert("Error in fetching posts at this time");
+      }
+    };
+    fetchPosts();
+  }, []);
 
   // Filter posts based on search and category
-  const filteredPosts = allPosts.filter((post) => {
+  const filteredPosts = postdata.filter((post) => {
     const matchesSearch = post.title
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
@@ -66,7 +48,7 @@ const AllPosts = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between mb-8 space-y-6 lg:space-y-0">
           <input
             type="text"
-            placeholder="Search posts by title or author"
+            placeholder="Search posts by title"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full lg:w-1/3 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -88,20 +70,24 @@ const AllPosts = () => {
           {filteredPosts.length > 0 ? (
             filteredPosts.map((post) => (
               <div
-                key={post.id}
+                key={post._id} // Assuming MongoDB, _id is the default key
                 className="bg-white shadow-lg rounded-lg overflow-hidden transform transition hover:scale-105"
               >
                 <img
-                  src={post.image}
+                  src={`http://localhost:3000/${post.imageurl}`}
                   alt={post.title}
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">{post.title}</h3>
+                  <p className="text-gray-700 mb-6">
+    {post.description} {/* Assuming 'description' contains the detailed post content */}
+  </p>
                   <p className="text-sm text-gray-500 mb-4">
-                    By {post.author} | {new Date(post.date).toLocaleDateString()}
+                    By {post.user.name} |{" "}
+                    {new Date(post.date).toLocaleDateString()}
                   </p>
-                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                  
                   <button className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
                     Read More
                   </button>

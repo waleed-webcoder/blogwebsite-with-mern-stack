@@ -1,17 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../pages/AuthContext'; // Import the useAuth hook
-import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate=useNavigate();
   const { isAuthenticated, logout } = useAuth(); // Get the auth state and logout function
 
-  const handleLogout = () => {
-    const confirmLogout = window.confirm('Do you want to logout?');
-    if (confirmLogout) {
-      logout(); // Call logout function from context
-    }
-  };
 
   return (
     <nav className="bg-gradient-to-r from-purple-500 to-indigo-600 p-4 shadow-lg">
@@ -35,9 +30,7 @@ const Navbar = () => {
               <Link to="/profile" className="text-white text-lg font-medium hover:text-indigo-200 transition duration-300">
                 <i className="fas fa-user-circle mr-2"></i> Profile
               </Link>
-              <button onClick={handleLogout} className="text-white text-lg font-medium hover:text-indigo-200 transition duration-300">
-                <i className="fas fa-sign-out-alt mr-2"></i> Logout
-              </button>
+              
             </>
           ) : (
             <>
