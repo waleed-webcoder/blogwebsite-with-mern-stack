@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
                 sameSite: "lax" // Control cross-site cookie behavior
             });
 
-            return res.status(200).json({ message: "Email verified successfully!" ,data:{name:user.name}});
+            return res.status(200).json({ message: "Email verified successfully!",token:token ,data:{name:user.name}});
         } else {
             return res.status(400).json({ message: "Invalid or expired OTP." });
         }
