@@ -12,9 +12,11 @@ import EditPost from './pages/editpost.jsx';
 import OtpVerification from './pages/otpverification.jsx';
 import Feed from './pages/Feed.jsx';
 import { AuthProvider } from './pages/AuthContext.jsx';
+import { ThemeProvider } from './pages/ThemeContext';
 function App() {
   return (
     <AuthProvider>
+      <ThemeProvider>
     <Router>
       <div className="flex flex-col min-h-screen">
         <Navbar />
@@ -34,6 +36,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </ThemeProvider>
     </AuthProvider>
   );
 }
