@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { ThemeContext } from '../pages/ThemeContext'; // Import your ThemeContext
+import { ThemeContext } from '../pages/ThemeContext'; // Import ThemeContext
 
 const UserProfile = () => {
   const { theme } = useContext(ThemeContext); // Get the current theme from context
@@ -14,7 +14,7 @@ const UserProfile = () => {
         const response = await axios.get("http://localhost:3000/userprofile", {
           withCredentials: true,
         });
-        setUserData(response.data.data); // Adjusted for backend response
+        setUserData(response.data.data); // Adjust for backend response
         setLoading(false);
       } catch (err) {
         setError(err.message);

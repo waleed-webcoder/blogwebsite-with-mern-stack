@@ -7,9 +7,9 @@ const HomePage = () => {
   const { theme } = useContext(ThemeContext); // Get the current theme from context
 
   return (
-    <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-800'}`}>
+    <div className={`min-h-screen ${theme === 'dark' ? 'bg-gray-900 text-gray-200' : 'bg-gray-50 text-gray-800'}`}>
       {/* Hero Section */}
-      <section className={`relative bg-gradient-to-r from-blue-500 to-purple-600 text-white py-20`}>
+      <section className={`relative ${theme === 'dark' ? 'bg-gradient-to-r from-purple-700 to-blue-800' : 'bg-gradient-to-r from-blue-500 to-purple-600'} text-white py-20`}>
         <div className="container mx-auto text-center">
           <h1 className="text-5xl font-extrabold tracking-tight">
             Welcome to Our Blog
@@ -50,7 +50,7 @@ const HomePage = () => {
                 imgSrc: "https://images.unsplash.com/photo-1519682577862-22b62b24e493?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHBlb3BsZXxlbnwwfHx8fDE2NDY0NTUxMTU&ixlib=rb-1.2.1&q=80&w=400",
               },
             ].map((blog, index) => (
-              <div key={index} className={`rounded-lg shadow-lg p-6 hover:shadow-xl transition ${theme === 'dark' ? 'bg-gray-700' : 'bg-white'}`}>
+              <div key={index} className={`rounded-lg shadow-lg p-6 hover:shadow-xl transition ${theme === 'dark' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-white hover:bg-gray-50'}`}>
                 <img
                   src={blog.imgSrc}
                   alt="Blog"
