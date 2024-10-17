@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { ThemeContext } from '../pages/ThemeContext'; // Import your ThemeContext
-
+import { useNavigate } from "react-router-dom";
 const AllPosts = () => {
+  const navigate=useNavigate();
   const { theme } = useContext(ThemeContext); // Get the current theme from context
   const [postdata, setpostdata] = useState([]);
   const [searchQuery, setSearchQuery] = useState(""); // Search query state
@@ -83,14 +84,14 @@ const AllPosts = () => {
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2">{post.title}</h3>
                   <p className={`mb-6 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
-                    {post.description} {/* Assuming 'description' contains the detailed post content */}
+                    {post.description.slice(0,50)} ,., {/* Assuming 'description' contains the detailed post content */}
                   </p>
                   <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} mb-4`}>
                     By {post.user.name} |{" "}
                     {new Date(post.date).toLocaleDateString()}
                   </p>
                   
-                  <button className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
+                  <button onClick={()=>{navigate(`/post/${post._id}`)}} className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">
                     Read More
                   </button>
                 </div>
