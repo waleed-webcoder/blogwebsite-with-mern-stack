@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
-
+import { Link } from 'react-router-dom';
 const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -35,16 +35,16 @@ const LoginPage = () => {
       login();
       navigate('/dashboard');
     } catch (error) {
-      alert("invalid cridentials");
+      alert("invalid credentials");
       console.log('error in submitting login form', error);
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="flex w-4/5 bg-white rounded-lg shadow-lg overflow-hidden">
-        <div className="w-1/2 p-8">
-          <h2 className="text-3xl font-bold mb-6 text-gray-800">Log In</h2>
+      <div className="flex flex-col md:flex-row w-full md:w-4/5 bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="w-full md:w-1/2 p-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Log In</h2>
           <form onSubmit={handleformsubmit} className="space-y-4">
             <div>
               <input
@@ -75,18 +75,18 @@ const LoginPage = () => {
           </form>
           <p className="mt-6 text-center text-gray-500">
             Don't have an account?{' '}
-            <a href="#" className="text-green-500 hover:underline font-medium">
+            <Link to="/signup" className="text-green-500 hover:underline font-medium">
               Sign up here
-            </a>
+            </Link>
           </p>
         </div>
 
-        <div className="w-1/2 bg-gradient-to-r from-green-400 to-blue-500 text-white flex items-center justify-center p-8">
+        <div className="w-full md:w-1/2 bg-gradient-to-r from-green-400 to-blue-500 text-white flex items-center justify-center p-8">
           <div className="text-center">
-            <h2 className="text-4xl font-bold mb-4">Welcome Back!</h2>
-            <p className="text-lg mb-4">We're so happy to see you again. Log in and experience our service!</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Welcome Back!</h2>
+            <p className="text-base md:text-lg mb-4">We're so happy to see you again. Log in and experience our service!</p>
             <p className="text-sm">Don't have an account?</p>
-            <a href="#" className="text-lg underline font-medium">Sign up here</a>
+            <Link to="/signup" className="text-lg underline font-medium">Sign up here</Link>
           </div>
         </div>
       </div>

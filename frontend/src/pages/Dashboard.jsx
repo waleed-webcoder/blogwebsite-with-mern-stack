@@ -55,7 +55,8 @@ const Dashboard = () => {
         },
       });
       console.log("Post created successfully", response.data);
-      alert("Your post has been created!");
+      alert("Post created successfully !!");
+      navigate("/profile")
     } catch (error) {
       console.log("Error in creating post", error);
       alert("You must be logged in");
@@ -75,21 +76,21 @@ const Dashboard = () => {
       {/* Main Dashboard Content */}
       <div className="flex flex-col md:flex-row">
         {/* Sidebar */}
-        <aside className={`w-full md:w-1/4 shadow-md p-4 ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
+        <aside style={{ boxShadow: '5px 0 15px -3px rgba(0, 0, 0, 0.5)' }} className={`w-full md:w-1/4  p-4 ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
           <nav>
             <ul>
               <li className="mb-4">
-                <Link to="/managepost" className={`block py-2 px-4 ${theme === 'dark' ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-200'} rounded-lg`}>
+                <Link to="/managepost" className={`block py-2 px-4 ${theme === 'dark' ? 'text-gray-300 bg-gray-700' : 'text-gray-700 bg-gray-200'} rounded-lg`}>
                   Manage Posts
                 </Link>
               </li>
               <li className="mb-4">
-                <Link to="/profile" className={`block py-2 px-4 ${theme === 'dark' ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-200'} rounded-lg`}>
+                <Link to="/profile" className={`block py-2 px-4 ${theme === 'dark' ? 'text-gray-300 bg-gray-700' : 'text-gray-700 bg-gray-200'} rounded-lg`}>
                   Profile Settings
                 </Link>
               </li>
               <li className="mb-4">
-                <button onClick={handleLogout} className={`block py-2 px-4 ${theme === 'dark' ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-200'} rounded-lg`}>
+                <button onClick={handleLogout} className={`block py-2 px-4 ${theme === 'dark' ? 'text-gray-300 bg-gray-700' : 'text-gray-700 bg-gray-200'} rounded-lg`}>
                   Logout
                 </button>
               </li>

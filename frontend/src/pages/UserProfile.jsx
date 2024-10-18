@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { ThemeContext } from '../pages/ThemeContext'; // Import ThemeContext
-
+import { useNavigate } from "react-router-dom";
+import { FaTwitter, FaLinkedin, FaFacebook } from "react-icons/fa";
 const UserProfile = () => {
+  const navigate=useNavigate();
   const { theme } = useContext(ThemeContext); // Get the current theme from context
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -60,6 +62,11 @@ const UserProfile = () => {
           />
           <h1 className="text-3xl font-semibold mt-4">{userData.name}</h1>
           <p className="text-gray-200 mt-2">Blogger & Content Creator</p>
+          <div className="flex mt-4 space-x-4">
+              <a href="#" className="hover:text-blue-300"><FaTwitter size={24} /></a>
+              <a href="#" className="hover:text-blue-300"><FaLinkedin size={24} /></a>
+              <a href="#" className="hover:text-blue-300"><FaFacebook size={24} /></a>
+            </div>
         </div>
 
         {/* User's Posts */}
@@ -83,10 +90,10 @@ const UserProfile = () => {
                   {/* Post Content */}
                   <h3 className="text-xl font-semibold text-indigo-600">{post.title || "Untitled Post"}</h3>
                   <p className={`mt-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
-                    {post.description ? post.description.slice(0, 100) : "No description available"}...
+                    {post.description ? post.description.slice(0, 50) : "No description available"}...
                   </p>
                   <p className={`text-sm mt-2 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>{post.date || "Date not available"}</p>
-                  <button className="mt-4 text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition-colors">
+                  <button onClick={()=>{navigate(`/post/${post._id}`)}} className="mt-4 text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition-colors">
                     Read More
                   </button>
                 </div>

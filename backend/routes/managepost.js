@@ -41,7 +41,7 @@ router.delete("/deletepost/:id",async (req,res)=>{
       return res.status(404).json({ message: "Post not found" });
     }
   
-    res.json({ message: "Post deleted successfully", deletedPost });
+    res.json({ message: "Post deleted successfully", deletepost });
   }catch(error){
     console.error("Error deleting post:", error);
     res.status(500).json({ message: "Server error" });
